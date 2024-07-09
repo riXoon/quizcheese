@@ -9,22 +9,23 @@
 <body>
 
     <div class="content">
-        <div class="question">
-            <h1>Question 1/10</h1>
-            <h1>Which of the following is the term for surgical complications resulting from surgical sponges left inside the patient's body?</h1>
+        <div class="question-cont">
+            <h1 id="number">Question 1/10</h1>
+            <h1 id="question">What does HTML mean?</h1>
         </div>
 
         <div class="line"></div>
 
-        <div class="selection">
-            <button><span>A</span> HyperText Markup Language</button>
-            <button><span>B</span> How To Make Lumpia</button>
-            <button><span>C</span> HyperText Makeup Language</button>
-            <button><span>D</span> HyperTolerance Mark Lawrence</button>
+        <div class="selection" id="answer-buttons">
+            <button class="btn" id="answer"><span>A</span> HyperText Markup Language</button>
+            <button class="btn" id="answer"><span>B</span> How To Make Lumpia</button>
+            <button class="btn" id="answer"><span>C</span> HyperText Makeup Language</button>
+            <button class="btn" id="answer"><span>D</span> HyperTolerance Mark Lawrence</button>
         </div>
 
-        <button class="next">Next</button>
+        <button class="next" id="next-btn">Next</button>
     </div>
     
+    <script src="html-quiz.js"></script>
 </body>
 </html>
