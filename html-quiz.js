@@ -1,3 +1,5 @@
+
+//Creating questions and answers in array
 const questions = [
     {
         question: "What does HTML stand for?",
@@ -96,16 +98,22 @@ const questionElement = document.getElementById('question');
 const numberElement = document.getElementById('number');
 const answerButton = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
+const modalBtn = document.getElementById('modal-btn');
+const modal = document.getElementById("myModal");
+const span = document.getElementsByClassName("close")[0];
 
+let result = document.getElementById("score")
 let currentQuestionIndex = 0;
 let score = 0;
 
-let button;
-
+//displaying the content from "questions" variable
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
+    modalBtn.innerHTML = "Show Score";
+    
+    
     showQuestion();
 }
 
@@ -119,7 +127,7 @@ function showQuestion() {
 
     currentQuestion.answer.forEach(answer => {
         
-        button = document.createElement("button");
+        const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButton.appendChild(button);
@@ -133,6 +141,8 @@ function showQuestion() {
 }
 
 function resetState() {
+
+    //every click on next button the previous question and selection will be disposed
     nextButton.style.display = "none";
     while (answerButton.firstChild) {
         answerButton.removeChild(answerButton.firstChild);
@@ -140,6 +150,8 @@ function resetState() {
 }
 
 function selectAnswer(e) {
+
+    //checking whether the selected answer is right or wrong
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
     if (isCorrect) {
@@ -154,19 +166,44 @@ function selectAnswer(e) {
         selectedBtn.style.color = "black"; 
 
     }
+
+    //hiding the next button unless answer has been chosen
     Array.from(answerButton.children).forEach(button => {
         if (button.dataset.correct === "true") {
             button.classList.add("correct");
         }
         button.disabled = true;
     });
-    nextButton.style.display = "block";
+
+    if (currentQuestionIndex < questions.length - 1){
+        nextButton.style.display = "block";
+       
+    }  
+    //Add ka pa ng lilitaw yung para sa show score na button wag mo kalimutan
 }
 
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-        showQuestion();
+        showQuestion(); 
+
+        if(currentQuestionIndex < questions.length - 1){
+            modalBtn.style.display = "none";
+        } else {
+            modalBtn.style.display = "block";
+           
+        } 
+
+        modalBtn.onclick = function() {
+            modal.style.display = "block";
+          }
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          result.innerHTML = score + `/${questions.length}`;
+          
+       
     } else {
         alert(`Quiz Over! Your score is ${score}/${questions.length}`);
         startQuiz();
