@@ -105,6 +105,7 @@ const span = document.getElementsByClassName("close")[0];
 let result = document.getElementById("score")
 let currentQuestionIndex = 0;
 let score = 0;
+let greet = document.getElementById("greet");
 
 //displaying the content from "questions" variable
 function startQuiz() {
@@ -112,8 +113,7 @@ function startQuiz() {
     score = 0;
     nextButton.innerHTML = "Next";
     modalBtn.innerHTML = "Show Score";
-    
-    
+
     showQuestion();
 }
 
@@ -126,7 +126,7 @@ function showQuestion() {
     numberElement.innerHTML = `Question ${questionNo}/${questions.length}`;
 
     currentQuestion.answer.forEach(answer => {
-        
+
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
@@ -158,12 +158,12 @@ function selectAnswer(e) {
         selectedBtn.classList.add("correct");
         score++;
         selectedBtn.style.backgroundColor = "#9aeabc";
-        selectedBtn.style.color = "black"; 
+        selectedBtn.style.color = "black";
 
     } else {
         selectedBtn.classList.add("incorrect");
         selectedBtn.style.backgroundColor = "#FFB0BA";
-        selectedBtn.style.color = "black"; 
+        selectedBtn.style.color = "black";
 
     }
 
@@ -175,24 +175,24 @@ function selectAnswer(e) {
         button.disabled = true;
     });
 
+    //next button will be display = none once reached the last question
     if (currentQuestionIndex < questions.length - 1){
         nextButton.style.display = "block";
-       
-    }  
-    //Add ka pa ng lilitaw yung para sa show score na button wag mo kalimutan
+    }
 }
 
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-        showQuestion(); 
+        showQuestion();
 
+
+        //*will show the modal button once it reached the last question
         if(currentQuestionIndex < questions.length - 1){
             modalBtn.style.display = "none";
         } else {
             modalBtn.style.display = "block";
-           
-        } 
+        }
 
         modalBtn.onclick = function() {
             modal.style.display = "block";
@@ -200,13 +200,19 @@ nextButton.addEventListener('click', () => {
           span.onclick = function() {
             modal.style.display = "none";
           }
-          
-          result.innerHTML = score + `/${questions.length}`;
-          
-       
-    } else {
-        alert(`Quiz Over! Your score is ${score}/${questions.length}`);
-        startQuiz();
+        if (score < 3) {
+            greet.innerHTML = "Your score is low! Do better!"
+            result.innerHTML = score + `/${questions.length}`;
+        } else if (score < 6) {
+            greet.innerHTML = "Not bad! surpass this next time."
+            result.innerHTML = score + `/${questions.length}`;
+        } else if (score < 10) {
+            greet.innerHTML = "Excellent! Keep up the good work!"
+            result.innerHTML = score + `/${questions.length}`;
+        } else if (score == 10) {
+            greet.innerHTML = "You are a prodigy!"
+            result.innerHTML = score + `/${questions.length}`;
+        }
     }
 });
 
