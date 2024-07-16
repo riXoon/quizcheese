@@ -9,7 +9,7 @@
 
 body {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-image: url(img/bg3.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -97,6 +97,7 @@ body {
   margin-top: 1rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  margin-top: 3rem;
 }
 
 .next:hover {
@@ -118,7 +119,7 @@ body {
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 5px 5px 0px #000;
-  margin-top: 1rem;
+  margin-top: 3rem;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -185,7 +186,7 @@ body {
     align-items: center;
     max-width: fit-content;
     margin-inline: auto;
-    margin-top: 7rem;
+    margin-top: 6rem;
     gap: 2rem;
   }
 
@@ -211,4 +212,58 @@ body {
 
   .score-container a:hover {
     text-decoration: underline;
+  }
+
+  .score-container .select {
+    font-size: 1.5rem;
+  }
+
+  @media only screen and (max-width: 767px){
+
+    .question-cont h1 {
+      font-size: 1rem;
+    }
+
+    .selection button {
+      height: 3.5rem;
+      width: 25rem;
+      font-size: 0.8rem;
+    }
+    .next {
+      font-size: 0.9rem;
+    }
+
+    .modal-content {
+      background-image: url(img/Results.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 1%; 
+      margin: auto;
+      margin-bottom: 1rem;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 100%;
+      min-height: 90%;
+      border-radius: 20px;
+    }
+
+    .score-container {
+      margin-top: 6rem ;
+    }
+
+    .score-container p {
+      font-size: 1.3rem;
+    }
+
+    .score-container h1 {
+      font-size: 6rem;
+    }
+
+    .score-container a {
+      font-size: 1.3rem;
+    }
+
+    .score-container .select {
+      font-size: 1rem;
+    }
   }
